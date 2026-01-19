@@ -102,6 +102,17 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
           {/* Desktop Icons - Balanced spacing */}
           <div className="flex items-center gap-2">
 
+            {/* Desktop: What This Is Icon */}
+            <a
+              href="https://git-theology.com/what-this-is"
+              className="hidden md:flex items-center text-blue-400 hover:text-blue-300 transition-colors group"
+              title="What This Is / What This Isn't"
+            >
+              <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </a>
+
             {/* Desktop: How to Read Icon */}
             <a
               href="https://git-theology.com/how-to-read"
@@ -201,8 +212,14 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
               </div>
 
               <a
+                href="https://git-theology.com/what-this-is"
+                className="block px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold mt-4 transition"
+              >
+                ℹ️ What This Is
+              </a>
+              <a
                 href="https://git-theology.com/how-to-read"
-                className="block px-4 py-2 rounded bg-yellow-600 hover:bg-yellow-700 text-white font-semibold mt-4 transition"
+                className="block px-4 py-2 rounded bg-yellow-600 hover:bg-yellow-700 text-white font-semibold mt-2 transition"
               >
                 📖 How to Read
               </a>
