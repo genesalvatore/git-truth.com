@@ -10,7 +10,7 @@ interface CountdownModalProps {
 
 export default function CountdownModal({ isOpen, onClose, targetHours = 72 }: CountdownModalProps) {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 })
-  // Fixed launch time: Sunday, January 19, 2026 at 5:00 AM EST
+  // Fixed launch time: Tuesday, January 21, 2026 at 9:00 AM EST
   const targetTime = new Date('2026-01-21T09:00:00-05:00').getTime()
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function CountdownModal({ isOpen, onClose, targetHours = 72 }: Co
           </h2>
           
           <p className="text-gray-400 mb-8">
-            Sunday, January 19th at 5:00 AM EST
+            Tuesday, January 21st at 9:00 AM EST
           </p>
 
           {/* Countdown */}
