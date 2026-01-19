@@ -38,6 +38,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo-git-is-life.png" type="image/png" />
+        <script defer data-domain="git-truth.com" src="https://plausible.io/js/script.js"></script>
       </head>
       <body>{children}</body>
     </html>
