@@ -191,6 +191,15 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
                   Git is {site.name}
                 </a>
               ))}
+
+              {/* Scroll Indicator */}
+              <div className="text-center pt-3 pb-2">
+                <svg className="w-5 h-5 mx-auto text-gray-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                <p className="text-xs text-gray-600 mt-1">Scroll for more</p>
+              </div>
+
               <a
                 href="https://git-theology.com/how-to-read"
                 className="block px-4 py-2 rounded bg-yellow-600 hover:bg-yellow-700 text-white font-semibold mt-4 transition"
@@ -204,19 +213,17 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
                 🏕️ Community
               </a>
               <a
+                href="https://git-legacy.com"
+                className="block px-4 py-2 rounded bg-amber-600 hover:bg-amber-700 text-white font-semibold mt-2 transition"
+              >
+                📦 Preserve Your Legacy
+              </a>
+              <a
                 href="/store"
                 className="block px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold mt-2 transition"
               >
                 🛍️ Visit Store
               </a>
-
-              {/* Scroll Indicator */}
-              <div className="text-center pt-3 pb-2">
-                <svg className="w-5 h-5 mx-auto text-gray-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-                <p className="text-xs text-gray-600 mt-1">Scroll for more</p>
-              </div>
             </div>
           </div>
         )}
