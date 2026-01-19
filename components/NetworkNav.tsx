@@ -10,6 +10,7 @@ interface NetworkNavProps {
 
 export default function NetworkNav({ currentSite, siteName, siteColor }: NetworkNavProps) {
   const [consentParam, setConsentParam] = useState('')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     // Check for consent in localStorage to propagate across Cathedral Network
@@ -51,7 +52,7 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
             </span>
           </a>
 
-          {/* Cathedral Network Links */}
+          {/* Desktop: Cathedral Network Links */}
           <div className="hidden md:flex items-center gap-1 text-xs sm:text-sm">
             <span className="text-gray-500 mr-2 hidden sm:inline">Git is</span>
             {sites.map((site, index) => (
@@ -76,10 +77,10 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
             ))}
           </div>
 
-          {/* Store Link */}
-          <a 
-            href="/store" 
-            className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
+          {/* Desktop: Store Link */}
+          <a
+            href="/store"
+            className="hidden md:flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
             title="Visit Store"
           >
             <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -87,7 +88,51 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
             </svg>
             <span className="hidden sm:inline text-sm">Store</span>
           </a>
+
+          {/* Mobile: Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-gray-300 hover:text-white transition-colors p-2"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-4 pb-4 border-t border-gray-800 pt-4">
+            <div className="space-y-2">
+              <p className="text-xs text-gray-500 mb-3 uppercase tracking-wider">Cathedral Network</p>
+              {sites.map((site) => (
+                <a
+                  key={site.id}
+                  href={site.url + consentParam}
+                  className={`block px-4 py-2 rounded transition ${site.id === currentSite
+                      ? `${site.color} font-bold bg-gray-800/50`
+                      : `${site.color} hover:bg-gray-800/30`
+                    }`}
+                >
+                  Git is {site.name}
+                </a>
+              ))}
+              <a
+                href="/store"
+                className="block px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold mt-4 transition"
+              >
+                🛍️ Visit Store
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
