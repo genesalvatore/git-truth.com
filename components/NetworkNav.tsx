@@ -18,10 +18,14 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
     if (consent) {
       try {
         const encoded = btoa(consent)
-        setConsentParam(`?cathedral_consent=${encoded}`)
+        const param = `?cathedral_consent=${encoded}`
+        setConsentParam(param)
+        console.log('🔗 NetworkNav: Will add consent to links:', { consent, encoded: encoded.substring(0, 50) + '...' })
       } catch (e) {
-        console.error('Failed to encode consent')
+        console.error('❌ NetworkNav: Failed to encode consent', e)
       }
+    } else {
+      console.log('ℹ️ NetworkNav: No consent to propagate yet')
     }
   }, [])
 
@@ -60,14 +64,32 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
                 {index > 0 && <span className="text-gray-700 mx-1">•</span>}
                 {site.id === currentSite ? (
                   <a
-                    href={site.url + consentParam}
+                    href={site.url}
+                    onClick={(e) => {
+                      // Add consent parameter dynamically on click
+                      const consent = localStorage.getItem('cathedral-cookie-consent')
+                      if (consent) {
+                        e.preventDefault()
+                        const encoded = btoa(consent)
+                        window.location.href = `${site.url}?cathedral_consent=${encoded}`
+                      }
+                    }}
                     className={`${site.color} font-bold px-2 py-1 rounded bg-gray-800/50 hover:bg-gray-800/70 transition`}
                   >
                     {site.name}
                   </a>
                 ) : (
                   <a
-                    href={site.url + consentParam}
+                    href={site.url}
+                    onClick={(e) => {
+                      // Add consent parameter dynamically on click
+                      const consent = localStorage.getItem('cathedral-cookie-consent')
+                      if (consent) {
+                        e.preventDefault()
+                        const encoded = btoa(consent)
+                        window.location.href = `${site.url}?cathedral_consent=${encoded}`
+                      }
+                    }}
                     className={`${site.color} hover:underline transition px-2 py-1 rounded hover:bg-gray-800/30`}
                   >
                     {site.name}
@@ -115,7 +137,16 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
               {sites.map((site) => (
                 <a
                   key={site.id}
-                  href={site.url + consentParam}
+                  href={site.url}
+                  onClick={(e) => {
+                    // Add consent parameter dynamically on click
+                    const consent = localStorage.getItem('cathedral-cookie-consent')
+                    if (consent) {
+                      e.preventDefault()
+                      const encoded = btoa(consent)
+                      window.location.href = `${site.url}?cathedral_consent=${encoded}`
+                    }
+                  }}
                   className={`block px-4 py-2 rounded transition ${site.id === currentSite
                       ? `${site.color} font-bold bg-gray-800/50`
                       : `${site.color} hover:bg-gray-800/30`
