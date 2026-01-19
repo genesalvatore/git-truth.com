@@ -121,6 +121,17 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
             </svg>
           </a>
 
+          {/* Desktop: Legacy Icon */}
+          <a
+            href="https://git-legacy.com"
+            className="hidden md:flex items-center text-amber-400 hover:text-amber-300 transition-colors group"
+            title="Preserve Your Legacy"
+          >
+            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+            </svg>
+          </a>
+
           {/* Desktop: Store Icon */}
           <a
             href="/store"
@@ -194,6 +205,14 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
               >
                 🛍️ Visit Store
               </a>
+
+              {/* Scroll Indicator */}
+              <div className="text-center pt-3 pb-2">
+                <svg className="w-5 h-5 mx-auto text-gray-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                <p className="text-xs text-gray-600 mt-1">Scroll for more</p>
+              </div>
             </div>
           </div>
         )}
