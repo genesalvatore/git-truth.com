@@ -146,6 +146,17 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
               </svg>
             </a>
 
+            {/* Desktop: Cathedral Hub Stats Icon */}
+            <a
+              href="https://git-cathedral.com"
+              className="hidden md:flex items-center text-purple-400 hover:text-purple-300 transition-colors group"
+              title="Cathedral Hub - Network Stats"
+            >
+              <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </a>
+
             {/* Desktop: Store Icon */}
             <a
               href="/store"
@@ -236,10 +247,16 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
                 📦 Preserve Your Legacy
               </a>
               <a
+                href="https://git-cathedral.com"
+                className="block px-4 py-2 rounded bg-purple-600 hover:bg-purple-700 text-white font-semibold mt-2 transition"
+              >
+                📊 Cathedral Hub
+              </a>
+              <a
                 href="/store"
                 className="block px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold mt-2 transition"
               >
-                🛍️ Visit Store
+                🛍️ Store
               </a>
             </div>
           </div>
