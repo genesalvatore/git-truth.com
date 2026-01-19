@@ -168,8 +168,14 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
                 </a>
               ))}
               <a
+                href="https://git-iscommunity.com"
+                className="block px-4 py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold mt-4 transition"
+              >
+                🏕️ Community
+              </a>
+              <a
                 href="/store"
-                className="block px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold mt-4 transition"
+                className="block px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold mt-2 transition"
               >
                 🛍️ Visit Store
               </a>
