@@ -99,28 +99,37 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
             ))}
           </div>
 
-          {/* Desktop: Community Link */}
+          {/* Desktop: How to Read Icon */}
+          <a
+            href="https://git-theology.com/how-to-read"
+            className="hidden md:flex items-center text-yellow-400 hover:text-yellow-300 transition-colors group"
+            title="How to Read the Cathedral Network"
+          >
+            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </a>
+
+          {/* Desktop: Community Icon */}
           <a
             href="https://git-iscommunity.com"
-            className="hidden md:flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors group"
+            className="hidden md:flex items-center text-emerald-400 hover:text-emerald-300 transition-colors group"
             title="Join Community"
           >
             <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 3 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <span className="hidden sm:inline text-sm">Community</span>
           </a>
 
-          {/* Desktop: Store Link */}
+          {/* Desktop: Store Icon */}
           <a
             href="/store"
-            className="hidden md:flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
+            className="hidden md:flex items-center text-gray-300 hover:text-white transition-colors group"
             title="Visit Store"
           >
             <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            <span className="hidden sm:inline text-sm">Store</span>
           </a>
 
           {/* Mobile: Hamburger Button */}
