@@ -177,8 +177,14 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
                 </a>
               ))}
               <a
+                href="https://git-theology.com/how-to-read"
+                className="block px-4 py-2 rounded bg-yellow-600 hover:bg-yellow-700 text-white font-semibold mt-4 transition"
+              >
+                📖 How to Read
+              </a>
+              <a
                 href="https://git-iscommunity.com"
-                className="block px-4 py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold mt-4 transition"
+                className="block px-4 py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold mt-2 transition"
               >
                 🏕️ Community
               </a>
