@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+body {
+  background: black;
+  color: white;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 60s linear infinite;
+}
+
+/* Git commit flash animation - inherits theme color and pulses brighter */
+/* Commits stay visible - they don't fade away */
+@keyframes commit-flash {
+  0% {
+    opacity: 0.3;
+    text-shadow: none;
+    transform: scale(1);
+  }
+  5% {
+    opacity: 1;
+    text-shadow: 0 0 12px currentColor, 0 0 20px currentColor;
+    transform: scale(1.05);
+  }
+  35% {
+    opacity: 1;
+    text-shadow: 0 0 10px currentColor, 0 0 18px currentColor;
+    transform: scale(1.03);
+  }
+  40% {
+    opacity: 0.8;
+    text-shadow: 0 0 8px currentColor;
+    transform: scale(1.01);
+  }
+  45% {
+    opacity: 0.5;
+    text-shadow: 0 0 5px currentColor;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    text-shadow: none;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    text-shadow: none;
+    transform: scale(1);
+  }
+}
+
+.commit-line {
+  animation: commit-flash infinite;
+  animation-delay: var(--commit-delay, 0s);
+  animation-duration: var(--commit-duration, 4s);
+  transition: opacity 0.2s ease, text-shadow 0.2s ease;
+  position: relative;
+  will-change: opacity, text-shadow, transform;
+}
+
+.commit-line-static {
+  opacity: 0.3;
+  position: relative;
+}
+
+/* Modal animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.zoom-in {
+  animation: zoom-in 0.3s ease-out;
+}
