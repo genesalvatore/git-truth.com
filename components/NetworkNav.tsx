@@ -152,7 +152,7 @@ export default function NetworkNav({ currentSite, siteName, siteColor }: Network
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-800 pt-4">
+          <div className="md:hidden mt-4 pb-4 border-t border-gray-800 pt-4 max-h-[70vh] overflow-y-auto">
             <div className="space-y-2">
               <p className="text-xs text-gray-500 mb-3 uppercase tracking-wider">Cathedral Network</p>
               {sites.map((site) => (
