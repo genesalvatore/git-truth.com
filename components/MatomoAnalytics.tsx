@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 
 interface MatomoAnalyticsProps {
@@ -24,7 +24,6 @@ export default function MatomoAnalytics({
   serverUrl = 'stats.greentreehosting.net'
 }: MatomoAnalyticsProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   // Initialize Matomo once
   useEffect(() => {
@@ -46,13 +45,14 @@ export default function MatomoAnalytics({
   useEffect(() => {
     if (!window._paq) return;
 
-    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+    // Use window.location.href for full URL (includes query params)
+    const url = window.location.pathname + window.location.search;
 
     // Track the page view
     window._paq.push(['setCustomUrl', url]);
     window._paq.push(['setDocumentTitle', document.title]);
     window._paq.push(['trackPageView']);
-  }, [pathname, searchParams]);
+  }, [pathname]); // Only depend on pathname, not searchParams
 
   return (
     <Script
