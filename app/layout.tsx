@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import MatomoAnalytics from '@/components/MatomoAnalytics'
 
 export const metadata: Metadata = {
   title: 'Git is Truth | Cryptographic Verification & Immutable Records',
@@ -40,7 +41,10 @@ export default function RootLayout({
         <link rel="icon" href="/logo-git-is-life.png" type="image/png" />
         <script defer data-domain="git-truth.com" src="https://plausible.io/js/script.js"></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <MatomoAnalytics siteId="12" />
+        {children}
+      </body>
     </html>
   )
 }

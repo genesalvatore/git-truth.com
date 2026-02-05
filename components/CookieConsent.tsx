@@ -16,68 +16,76 @@ export default function CookieConsent() {
     analytics: false,
     functional: false,
   })
-  
+
   useEffect(() => {
-    // Check URL for consent parameters (cross-domain propagation)
+    // PRIORITY 1: Check URL for consent parameters (cross-domain propagation)
     const urlParams = new URLSearchParams(window.location.search)
     const consentParam = urlParams.get('cathedral_consent')
-    
+
     if (consentParam) {
       try {
-        // Decode and save consent from URL parameter
+        // Decode consent from URL parameter
         const decoded = JSON.parse(atob(consentParam))
+        console.log('✅ Received consent from another Cathedral site:', decoded)
+
+        // Save to localStorage
         localStorage.setItem('cathedral-cookie-consent', JSON.stringify(decoded))
         setPreferences(decoded)
-        
+
         // Clean URL without reloading
         const url = new URL(window.location.href)
         url.searchParams.delete('cathedral_consent')
         window.history.replaceState({}, '', url.toString())
+
+        // Don't show banner - consent received!
         return
       } catch (e) {
-        console.error('Invalid consent parameter')
+        console.error('❌ Failed to decode consent parameter:', e)
       }
     }
-    
-    // Check if consent has been given locally
+
+    // PRIORITY 2: Check if consent has been given locally
     const hasConsent = localStorage.getItem('cathedral-cookie-consent')
-    
+
     if (!hasConsent) {
+      console.log('ℹ️ No consent found - showing banner')
       setTimeout(() => setShowBanner(true), 1000)
     } else {
       // Load existing preferences
       try {
         const saved = JSON.parse(hasConsent)
+        console.log('✅ Local consent found:', saved)
         setPreferences(saved)
       } catch (e) {
+        console.error('❌ Invalid local consent - showing banner')
         setShowBanner(true)
       }
     }
   }, [])
-  
+
   const savePreferences = (prefs: CookiePreferences) => {
     const consentData = {
       ...prefs,
       essential: true,
       timestamp: new Date().toISOString()
     }
-    
+
     localStorage.setItem('cathedral-cookie-consent', JSON.stringify(consentData))
-    
+
     const cookieValue = btoa(JSON.stringify(consentData))
     document.cookie = `cathedral_consent=${cookieValue}; path=/; max-age=31536000; SameSite=Lax`
-    
+
     // Add consent to sessionStorage for immediate cross-domain propagation
     sessionStorage.setItem('cathedral-consent-pending', cookieValue)
-    
+
     setShowBanner(false)
     setShowModal(false)
-    
+
     if (prefs.analytics) {
       console.log('Analytics enabled')
     }
   }
-  
+
   const acceptAll = () => {
     savePreferences({
       essential: true,
@@ -85,11 +93,11 @@ export default function CookieConsent() {
       functional: true,
     })
   }
-  
+
   const acceptSelected = () => {
     savePreferences(preferences)
   }
-  
+
   const rejectAll = () => {
     savePreferences({
       essential: true,
@@ -97,20 +105,20 @@ export default function CookieConsent() {
       functional: false,
     })
   }
-  
+
   const openModal = () => {
     setShowModal(true)
   }
-  
+
   const closeBanner = () => {
     // Close without saving - defaults to essential only, will show again next visit
     setShowBanner(false)
   }
-  
+
   const closeModal = () => {
     setShowModal(false)
   }
-  
+
   // Banner - Simple bottom bar
   if (showBanner && !showModal) {
     return (
@@ -131,8 +139,8 @@ export default function CookieConsent() {
               <span className="font-semibold text-blue-400">🍪 Cathedral Network Cookies</span>
             </p>
             <p>
-              We use cookies for analytics and functionality across all 11 Cathedral sites. 
-              <button 
+              We use cookies for analytics and functionality across all 11 Cathedral sites.
+              <button
                 onClick={openModal}
                 className="ml-1 text-blue-400 hover:text-blue-300 underline"
               >
@@ -140,7 +148,7 @@ export default function CookieConsent() {
               </button>
             </p>
           </div>
-          
+
           <div className="flex gap-3 flex-shrink-0">
             <button
               onClick={openModal}
@@ -159,11 +167,11 @@ export default function CookieConsent() {
       </div>
     )
   }
-  
+
   // Modal - Detailed preferences
   if (showModal) {
     return (
-      <div 
+      <div
         className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/50 backdrop-blur-sm p-4"
         onClick={(e) => {
           // Close modal if clicking on backdrop
@@ -183,7 +191,7 @@ export default function CookieConsent() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          
+
           {/* Header */}
           <div className="p-6 border-b border-gray-800">
             <h2 className="text-2xl font-bold text-blue-400 mb-2">
@@ -193,14 +201,14 @@ export default function CookieConsent() {
               Cathedral Network (all 11 sites) • Your privacy matters
             </p>
           </div>
-          
+
           {/* Content */}
           <div className="p-6 space-y-4">
             <p className="text-gray-300">
-              We use cookies to enhance your experience across all Cathedral Network sites. 
+              We use cookies to enhance your experience across all Cathedral Network sites.
               Please choose which types of cookies you're comfortable with.
             </p>
-            
+
             {/* Essential Cookies */}
             <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
               <div className="flex items-start justify-between mb-2">
@@ -212,7 +220,7 @@ export default function CookieConsent() {
                     </span>
                   </h3>
                   <p className="text-sm text-gray-400">
-                    Necessary for the website to function. Cannot be disabled. 
+                    Necessary for the website to function. Cannot be disabled.
                     Used for: remembering your cookie preferences, maintaining sessions.
                   </p>
                 </div>
@@ -226,7 +234,7 @@ export default function CookieConsent() {
                 </div>
               </div>
             </div>
-            
+
             {/* Analytics Cookies */}
             <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
               <div className="flex items-start justify-between mb-2">
@@ -238,7 +246,7 @@ export default function CookieConsent() {
                     </span>
                   </h3>
                   <p className="text-sm text-gray-400">
-                    Help us understand how visitors use our sites. Anonymous data only. 
+                    Help us understand how visitors use our sites. Anonymous data only.
                     Used for: page views, traffic sources, popular content.
                   </p>
                 </div>
@@ -252,7 +260,7 @@ export default function CookieConsent() {
                 </div>
               </div>
             </div>
-            
+
             {/* Functional Cookies */}
             <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
               <div className="flex items-start justify-between mb-2">
@@ -264,7 +272,7 @@ export default function CookieConsent() {
                     </span>
                   </h3>
                   <p className="text-sm text-gray-400">
-                    Enable enhanced functionality and personalization. 
+                    Enable enhanced functionality and personalization.
                     Used for: remembering your preferences (theme, language), cross-site navigation.
                   </p>
                 </div>
@@ -278,7 +286,7 @@ export default function CookieConsent() {
                 </div>
               </div>
             </div>
-            
+
             <details className="text-sm">
               <summary className="cursor-pointer text-blue-400 hover:text-blue-300">
                 Learn more about our cookie policy
@@ -291,7 +299,7 @@ export default function CookieConsent() {
                   <strong>Data retention:</strong> Cookie preferences stored for 1 year. Analytics data anonymized after 30 days.
                 </p>
                 <p>
-                  <strong>Your rights:</strong> You can change preferences anytime in the footer. 
+                  <strong>Your rights:</strong> You can change preferences anytime in the footer.
                   GDPR, CCPA, and LGPD compliant.
                 </p>
                 <p>
@@ -300,7 +308,7 @@ export default function CookieConsent() {
               </div>
             </details>
           </div>
-          
+
           {/* Actions */}
           <div className="p-6 border-t border-gray-800 flex flex-col sm:flex-row gap-3">
             <button
@@ -326,6 +334,6 @@ export default function CookieConsent() {
       </div>
     )
   }
-  
+
   return null
 }
