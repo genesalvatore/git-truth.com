@@ -23,7 +23,7 @@ const themeData = {
   truth: {
     color: 'text-green-400',
     messages: [
-      'verify cryptographic signature',
+      'verify digital signature',
       'add immutable record',
       'update SHA-256 proof',
       'commit verification layer',
@@ -47,7 +47,7 @@ const themeData = {
     messages: [
       'distribute across network',
       'replicate to eternal storage',
-      'ensure merkle integrity',
+      'ensure chain integrity',
       'commit to permanence',
       'add distributed backup',
       'verify replication complete',

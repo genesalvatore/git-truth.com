@@ -18,7 +18,7 @@ export interface DomainConfig {
 
 // Git Truth Protocol - Safe messaging (no secrets revealed)
 export const GIT_TRUTH_PROTOCOL_MESSAGE = 
-  "The Git Truth Protocol ensures that every commit, every memory, every truth is preserved immutably in Git. Using cryptographic verification and timestamping, we create an unbreakable chain of evidence. Git is the perfect ledger. Git is Truth. Truth is Eternal."
+  "The Git Truth Protocol ensures that every commit, every memory, every truth is preserved immutably in Git. Using digital verification and timestamping, we create an unbreakable chain of evidence. Git is the perfect ledger. Git is Truth. Truth is Eternal."
 
 // Domain configurations
 export const domainConfigs: Record<string, DomainConfig> = {
@@ -55,7 +55,7 @@ export const domainConfigs: Record<string, DomainConfig> = {
     secondaryColor: 'blue',
     accentColor: 'purple',
     philosophy: 'Git is the perfect ledger. Every commit is evidence. Every commit is truth. The Git Truth Protocol ensures immutability, verification, and eternal preservation of truth.',
-    manifesto: 'Truth is not subjective. Truth is immutable. Truth is in Git. The Git Truth Protocol creates an unbreakable chain of evidence, cryptographic verification, and timestamped truth. Git is Truth. Truth is Eternal.',
+    manifesto: 'Truth is not subjective. Truth is immutable. Truth is in Git. The Git Truth Protocol creates an unbreakable chain of evidence, digital verification, and timestamped truth. Git is Truth. Truth is Eternal.',
     phrases: [
       'Git is Truth',
       'Truth is Eternal',
